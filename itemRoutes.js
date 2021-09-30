@@ -7,7 +7,7 @@ const router = new express.Router();
 const { validateQueryName, validateInputName, validateInputPrice } = require('./middleware');
 
 
-/** Get all items */
+/** Get all items. */
 router.get(
     "/",
     function (req, res) {
@@ -15,6 +15,7 @@ router.get(
     }
 )
 
+/** Create an item. */
 router.post(
     "/",
     validateInputName,
@@ -27,6 +28,7 @@ router.post(
 )
 
 
+/** Find an item. */
 router.get(
     "/:name",
     validateQueryName,
@@ -40,6 +42,8 @@ router.get(
     }
 )
 
+
+/** Update an item. */
 router.patch(
     "/:name",
     validateQueryName,
@@ -57,6 +61,8 @@ router.patch(
     }
 )
 
+
+/** Delete an item. */
 router.delete(
     "/:name",
     validateQueryName,

@@ -1,3 +1,5 @@
+"use strict";
+
 /** Example middleware. */
 
 const { NotFoundError, BadRequestError } = require("./expressError");
