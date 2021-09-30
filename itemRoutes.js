@@ -10,7 +10,7 @@ const { validateQueryName, validateInputName, validateInputPrice } = require('./
 /** Get all items. */
 router.get(
     "/",
-    function (req, res) {
+    function (req, res, next) { //Code review: Even if not using 'next', good practice to pass it
         return res.json({ items });
     }
 )
@@ -34,7 +34,7 @@ router.get(
     validateQueryName,
     function (req, res) {
         const itemName = req.params.name;
-        for (let item of items) {
+        for (let item of items) { //Code review: We could use array method .find(); 
             if (item.name === itemName) {
                 return res.json(item);
             }
@@ -42,7 +42,7 @@ router.get(
     }
 )
 
-
+//Code review: Use .filter() to return a new list
 /** Update an item. */
 router.patch(
     "/:name",
@@ -55,7 +55,7 @@ router.patch(
             if (item.name === itemName) {
                 item.name = req.body.name;
                 item.price = req.body.price;
-                return res.json({ udpated: item });
+                return res.json({ updated: item });
             }
         }
     }
@@ -68,7 +68,7 @@ router.delete(
     validateQueryName,
     function (req, res) {
         const itemName = req.params.name;
-        for (let i = 0; i < items.length; i++) {
+        for (let i = 0; i < items.length; i++) { // Could use array method .indexOf()
             if (items[i].name === itemName) {
                 items.splice(i, 1);
                 return res.json({ message: "Deleted" });
