@@ -1,3 +1,5 @@
+"use strict";
+
 /** Routes for sample app. */
 
 const express = require("express");
